@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Transactions;
 
 namespace Services
 {
@@ -42,7 +43,7 @@ namespace Services
                     catch
                     {
                         transaction.Rollback();
-                        throw;
+                        throw new TransactionException();
                     }
                 }
                 connection.Close();
